@@ -1,28 +1,25 @@
-﻿using System.Net.Http;
-using System.Text.Json;
+﻿using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 using TonyM.DAL.Exceptions;
+using TonyM.DAL.Models;
+using TonyM.DAL.Services;
 
-namespace TonyM.DAL
+namespace TonyM.DAL.Repository
 {
     public class Repository : IRepository
     {
-        private readonly IConfiguration configuration;
-        private readonly IHttpClientFactory httpClientFactory;
+        private readonly IConfiguration _configuration;
+        private readonly NvidiaHttpService _client;
 
-        public Repository(IConfiguration configuration, IHttpClientFactory httpClientFactory)
+        public Repository(IConfiguration configuration, NvidiaHttpService nvidiaHttpService)
         {
-            this.configuration = configuration;
-            this.httpClientFactory = httpClientFactory;            
+            this._configuration = configuration;
+            this._client = nvidiaHttpService;            
         }
 
-
-        public async Task<ListMap> GetProductFromSource(string reference, string locale)
+        public async Task<ListMap> GetProductFromSource(string reference)
         {
-            double timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
-
-            var httpClient = this.httpClientFactory.CreateClient("NvidiaClient");
-            var httpResponseMessage = await httpClient.GetAsync($"feinventory?skus={reference}&locale={locale}&timestamp={timestamp}");
+            var httpResponseMessage = await _client.GetNvidiaResponse(reference);
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
@@ -48,8 +45,8 @@ namespace TonyM.DAL
 
         public IEnumerable<ListMap> GetProductFromConfig()
         {
-            string localisation = configuration.GetSection("Locale").Value;
-            var referencesList = configuration.GetSection("Gpu").Value.Split(",");
+            string localisation = _configuration.GetSection("Locale").Value;
+            var referencesList = _configuration.GetSection("Gpu").Value.Split(",");
 
             var products = new List<ListMap>();
 

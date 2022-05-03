@@ -1,6 +1,6 @@
 ﻿namespace TonyM.DAL.Exceptions
 {
-    public class DeserializeException : System.Exception
+    public class DeserializeException : Exception
     {
         public DeserializeException()
         {

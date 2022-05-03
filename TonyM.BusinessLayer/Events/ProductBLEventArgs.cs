@@ -2,11 +2,13 @@
 {
     public class ProductBLEventArgs : EventArgs
     {
-        public ProductBLEventArgs(string link)
+        public ProductBLEventArgs(string link, string name)
         {
-            this.link = link;
+            this.Link = link;
+            this.Name = name;
         }
 
-        public string link { get; set; }
+        public string Link { get; set; }
+        public string Name { get; set; }
     }
 }

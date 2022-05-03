@@ -1,12 +1,12 @@
 ﻿using TonyM.BLL.Events;
 using TonyM.BLL.Exceptions;
 
-namespace TonyM.BLL
+namespace TonyM.BLL.Models
 {
     public class ProductBL
     {
-        private string _Reference;
-        private string _Localisation;
+        private string _reference;
+        private string _localisation;
 
         public ProductBL(string reference, string localisation)
         {
@@ -18,7 +18,7 @@ namespace TonyM.BLL
         public string Reference {
             get
             {
-                return _Reference;
+                return _reference;
             }
             init
             {
@@ -26,7 +26,7 @@ namespace TonyM.BLL
                 {
                     throw new EmptyFieldException();
                 }
-                _Reference = value;
+                _reference = value;
             }
         }
         public string? Name 
@@ -45,7 +45,7 @@ namespace TonyM.BLL
         public string Localisation {
             get
             {
-                return _Localisation;
+                return _localisation;
             }
             init
             {
@@ -53,7 +53,7 @@ namespace TonyM.BLL
                 {
                     throw new EmptyFieldException();
                 }
-                _Localisation = value;
+                _localisation = value;
             }
         }
         public DateTime? LastDetected { get; set; }
@@ -67,7 +67,7 @@ namespace TonyM.BLL
 
                 if (OnAvailable != null)
                 {                
-                    OnAvailable(this, new ProductBLEventArgs(this.BuyLink));
+                    OnAvailable(this, new ProductBLEventArgs(this.BuyLink, this.Name));
                 }
             }
         }

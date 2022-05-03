@@ -1,4 +1,4 @@
-﻿namespace TonyM.DAL
+﻿namespace TonyM.DAL.Models
 {
     public class ListMap
     {

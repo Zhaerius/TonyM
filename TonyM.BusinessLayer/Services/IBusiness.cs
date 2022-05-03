@@ -1,6 +1,8 @@
-﻿namespace TonyM.BLL
+﻿using TonyM.BLL.Models;
+
+namespace TonyM.BLL.Services
 {
-    public interface IBussiness
+    public interface IBusiness
     {
         public IEnumerable<ProductBL> Initialisation();
         public Task UpdateFromSourceAsync(ProductBL product);

@@ -1,13 +1,25 @@
 ﻿using System.Diagnostics;
 using TonyM.BLL.Events;
 
-namespace TonyM.UI
+namespace TonyM.APP.Helpers
 {
     public static class UiHelpers
     {
+        public static string Logo = @"
+   _____                 __  __         ____  
+  |_   _|__  _ __  _   _|  \/  | __   _| ___| 
+    | |/ _ \| '_ \| | | | |\/| | \ \ / /___ \ 
+    | | (_) | | | | |_| | |  | |  \ V / ___) |
+    |_|\___/|_| |_|\__, |_|  |_|   \_/ |____/ 
+                   |___/               
+
+        ";
+
+
+
         public static void Alert(object sender, ProductBLEventArgs e)
         {
-            OpenBuyPage(e.link);
+            OpenBuyPage(e.Link);
             SoundAlert(3);
         }
 

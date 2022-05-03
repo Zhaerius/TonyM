@@ -1,19 +1,20 @@
-﻿using TonyM.DAL;
+﻿using TonyM.BLL.Models;
+using TonyM.DAL.Repository;
 
-namespace TonyM.BLL
+namespace TonyM.BLL.Services
 {
-    public class ProductService : IBussiness
+    public class Business : IBusiness
     {
-        private readonly IRepository repository;
+        private readonly IRepository _repository;
 
-        public ProductService(IRepository repository)
+        public Business(IRepository repository)
         {
-            this.repository = repository;
+            this._repository = repository;
         }
 
         public IEnumerable<ProductBL> Initialisation()
         {
-            var dao = repository.GetProductFromConfig();
+            var dao = _repository.GetProductFromConfig();
             var products = new List<ProductBL>();
 
             foreach (var d in dao)
@@ -26,7 +27,7 @@ namespace TonyM.BLL
 
         public async Task UpdateFromSourceAsync(ProductBL product)
         {
-            var dao = await repository.GetProductFromSource(product.Reference, product.Localisation);
+            var dao = await _repository.GetProductFromSource(product.Reference);
 
             product.BuyLink = dao.product_url;
             product.InStock = bool.Parse(dao.is_active);

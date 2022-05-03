@@ -1,6 +1,6 @@
 ﻿namespace TonyM.DAL.Exceptions
 {
-    public class HttpResponseException : System.Exception
+    public class HttpResponseException : Exception
     {
         public HttpResponseException()
         {
