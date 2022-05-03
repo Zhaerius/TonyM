@@ -2,7 +2,10 @@
   "Locale": "FR",
   "Gpu": "NVGFT060T,NVGFT070,NVGFT070T,NVGFT080,NVGFT080T,NVGFT090,NVGFT090T",
   "NvidiaApi": "https://api.store.nvidia.com/partner/v1/",
-  "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36 OPR/77.0.4054.277"
+  "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36 OPR/77.0.4054.277",
+  "Token": "xxx",
+  "DropChannel": "xxx",
+  "DropGroup": "xxx"
 }
 
 // Vous pouvez réduire ou ajouter de nouvelle carte graphique, ainsi que changer la localisation
