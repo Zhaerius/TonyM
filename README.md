@@ -7,3 +7,5 @@ Si un GPU de votre choix est en stock, un signal sonore vous avertira, et la pag
 
 ### Nécessite :
  * Runtime .NET (https://dotnet.microsoft.com/en-us/download/dotnet/6.0/runtime)
+
+L'application existe en deux versions : console et discord
