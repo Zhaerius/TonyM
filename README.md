@@ -14,7 +14,7 @@ TonyM notifie la présence de cartes graphiques `Nvidia FE`. Si un GPU est en st
 - Token : Le Token de votre bot Discord
 - DropChannel : L'identifiant du channel ou les messages d'alertes sont envoyés
 - DropGroup : Le groupe discord à notifier lors d'un drop
-- Locale : A modifier si vous voulez rechercher les drop d'autres pays
+- Locale : A modifier si vous voulez rechercher les stocks d'autres pays
 
 
 ## Nécessite :
