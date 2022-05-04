@@ -3,7 +3,7 @@ TonyM notifie la présence de cartes graphiques `Nvidia FE`. Si un GPU est en st
 
 **Version Console :** Un signal sonore vous avertira, et la page web s'ouvrira automatiquement.
 
-**Version Discord :** Une notification sera envoyé dans le salon correspondant. Nécésite le paramètrage du fichier usersettings.json avec vos informations serveur.
+**Version Discord :** Une notification sera envoyée dans le salon correspondant. Nécessite le paramétrage du fichier usersettings.json avec vos informations serveur.
 ```
 !startrtx : commence la recherche
 !stoprtx : met fin à la recherche
