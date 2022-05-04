@@ -1,15 +1,16 @@
 # TonyM
-TonyM notifie la présence de cartes graphiques Nvidia FE chez le revendeur LDLC.
+TonyM notifie la présence de cartes graphiques `Nvidia FE`. Si un GPU est en stock : 
 
-L'application vérifie le stock chaque seconde. 
+**Version Console :** Un signal sonore vous avertira, et la page web s'ouvrira automatiquement.
 
-### Version Console :
-Si un GPU de votre choix est en stock, un signal sonore vous avertira, et la page web s'ouvrira automatiquement.
+**Version Discord :** Une notification sera envoyé dans le salon correspondant. Nécésite le paramètrage du fichier usersettings.json avec vos informations serveur.
+```
+!startrtx : commence la recherche
+!stoprtx : met fin à la recherche
+```
 
-### Version Discord :
-Si un GPU de votre choix est en stock, une notification sera envoyé dans le salon correspondant (paramètrage dans le UserSettings.json)
+**Paramètres usersettings.json :**
 
-Si un GPU de votre choix est en stock, un signal sonore vous avertira, et la page web s'ouvrira automatiquement.
 
 
 ### Nécessite :
