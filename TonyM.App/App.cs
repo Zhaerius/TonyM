@@ -29,14 +29,13 @@ namespace TonyM.APP
 
             while (products.Count() > 0)
             {
-
                 #region Affichage des derniers drops
                 var productsDetected = products.Where(p => p.LastDetected != null).AsEnumerable();
                 int nbProductsDetected = productsDetected.Count();
 
                 if (nbProductsDetected > 0)
                 {
-                    Console.WriteLine("== DERNIERS DROPS ==");
+                    Console.WriteLine("\n== DERNIERS DROPS ==");
 
                     foreach (var product in productsDetected)
                         Console.WriteLine($"{product.Name} : {product.LastDetected}");
@@ -61,7 +60,7 @@ namespace TonyM.APP
                 {
                     await Task.WhenAll(process);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     UiHelpers.ErrorTextColor("x");
                 }
@@ -70,7 +69,7 @@ namespace TonyM.APP
                 #region Finalisation de l'affichage
                 tokenSource.Cancel();
                 await Task.Delay(1000);
-                UiHelpers.ClearLastLine((nbProductsDetected == 0 ? 0 : 2) + nbProductsDetected);
+                UiHelpers.ClearLastLine((nbProductsDetected == 0 ? 1 : 3) + nbProductsDetected);
                 #endregion
             }
 
