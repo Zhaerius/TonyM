@@ -9,7 +9,7 @@ TonyM notifie la présence de cartes graphiques `Nvidia FE`. Si un GPU est en st
 !stoprtx : met fin à la recherche
 ```
 
-## Paramètres usersettings.json :
+## Paramétrage usersettings.json :
 - Gpu : La liste des cartes à rechercher, séparée par une virgule.
 - Locale : Le pays de recherche
 - Token : Le Token de votre bot Discord
