@@ -2,24 +2,28 @@
 using Microsoft.Extensions.Configuration;
 using TonyM.DAL.Exceptions;
 using TonyM.DAL.Models;
-using TonyM.DAL.Services;
 
 namespace TonyM.DAL.Repository
 {
     public class Repository : IRepository
     {
         private readonly IConfiguration _configuration;
-        private readonly NvidiaHttpService _client;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly string _locale;
 
-        public Repository(IConfiguration configuration, NvidiaHttpService nvidiaHttpService)
+        public Repository(IConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
             this._configuration = configuration;
-            this._client = nvidiaHttpService;            
+            this._httpClientFactory = httpClientFactory;
+            this._locale = configuration.GetSection("Locale").Value;
         }
 
         public async Task<ListMap> GetProductFromSource(string reference)
         {
-            var httpResponseMessage = await _client.GetNvidiaResponse(reference);
+            double timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+
+            var httpClient = this._httpClientFactory.CreateClient("NvidiaClient");
+            var httpResponseMessage = await httpClient.GetAsync($"feinventory?skus={reference}&locale={_locale}&timestamp={timestamp}");
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
@@ -45,14 +49,14 @@ namespace TonyM.DAL.Repository
 
         public IEnumerable<ListMap> GetProductFromConfig()
         {
-            string localisation = _configuration.GetSection("Locale").Value;
+            string localisation = _locale;
             var referencesList = _configuration.GetSection("Gpu").Value.Split(",");
 
             var products = new List<ListMap>();
 
             foreach (var reference in referencesList)
             {
-                var product = new ListMap() { fe_sku = reference, locale = localisation};
+                var product = new ListMap() { fe_sku = reference, locale = localisation };
                 products.Add(product);
             }
 
