@@ -61,7 +61,7 @@ namespace TonyM.BLL.Models
 
         public void VerificationStock(string? oldLink)
         {
-            if (this.InStock && this.BuyLink != null && this.BuyLink != oldLink)
+            if (this.InStock && !string.IsNullOrEmpty(this.BuyLink) && this.BuyLink != oldLink)
             {
                 this.LastDetected = DateTime.Now;
 
