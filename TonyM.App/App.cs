@@ -25,7 +25,6 @@ namespace TonyM.APP
             Console.ReadKey();
             Console.WriteLine("\n== VOTRE SELECTION ==");
             Console.WriteLine(string.Join(", ", products.Select(p => p.Name)));
-            Console.WriteLine();
             #endregion
 
             while (products.Count() > 0)
@@ -40,7 +39,7 @@ namespace TonyM.APP
                     Console.WriteLine("== DERNIERS DROPS ==");
 
                     foreach (var product in productsDetected)
-                        Console.WriteLine($"{product.Name} : {product.LastDetected} \n");
+                        Console.WriteLine($"{product.Name} : {product.LastDetected}");
                 }
                 #endregion
 
@@ -48,7 +47,7 @@ namespace TonyM.APP
                 CancellationTokenSource tokenSource = new CancellationTokenSource();
                 CancellationToken token = tokenSource.Token;
 
-                Console.Write("Recherche en cours");
+                Console.Write("\nRecherche en cours");
 
                 var displayProgress = Task.Run(() => UiHelpers.DisplayProgress(token));
                 var process = products.Select(async p =>
