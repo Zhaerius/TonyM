@@ -1,4 +1,5 @@
-﻿using TonyM.BLL.Events;
+﻿using System.Text.RegularExpressions;
+using TonyM.BLL.Events;
 using TonyM.BLL.Exceptions;
 
 namespace TonyM.BLL.Models
@@ -7,15 +8,17 @@ namespace TonyM.BLL.Models
     {
         private string _reference;
         private string _localisation;
+        private string _buyLink;
 
         public ProductBL(string reference, string localisation)
         {
             this.Reference = reference;
-            this.Localisation = localisation;   
+            this.Localisation = localisation;
         }
 
         public event EventHandler<ProductBLEventArgs> OnAvailable;
-        public string Reference {
+        public string Reference
+        {
             get
             {
                 return _reference;
@@ -29,7 +32,7 @@ namespace TonyM.BLL.Models
                 _reference = value;
             }
         }
-        public string? Name 
+        public string? Name
         {
             get
             {
@@ -40,9 +43,25 @@ namespace TonyM.BLL.Models
                 return this.Reference;
             }
         }
-        public string? BuyLink { get; set; }
+        public string? BuyLink
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_buyLink))
+                {
+                    return Regex.Replace(_buyLink, @"(?<=html)[^\]]+", "");
+                }
+                return _buyLink;
+            }
+            set
+            {
+                _buyLink = value;
+            }
+        }
+
         public bool InStock { get; set; } = false;
-        public string Localisation {
+        public string Localisation
+        {
             get
             {
                 return _localisation;
@@ -66,7 +85,7 @@ namespace TonyM.BLL.Models
                 this.LastDetected = DateTime.Now;
 
                 if (OnAvailable != null)
-                {                
+                {
                     OnAvailable(this, new ProductBLEventArgs(this.BuyLink, this.Name));
                 }
             }
