@@ -10,9 +10,4 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\TonyM.DataAccesLayer\TonyM.DAL.csproj" />
-    <ProjectReference Include="..\TonyM.Models\TonyM.Models.csproj" />
-  </ItemGroup>
-
 </Project>

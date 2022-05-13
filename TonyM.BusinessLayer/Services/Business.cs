@@ -1,33 +1,38 @@
-﻿using TonyM.BLL.Models;
+﻿using Microsoft.Extensions.Options;
+using TonyM.BLL.Models;
 using TonyM.DAL.Repository;
+using TonyM.Models.Opts;
 
 namespace TonyM.BLL.Services
 {
     public class Business : IBusiness
     {
-        private readonly IRepository _repository;
+        private readonly IRepository repository;
+        private readonly UserOptions userOptions;
 
-        public Business(IRepository repository)
+        public Business(IRepository repository, IOptions<UserOptions> userOptions)
         {
-            this._repository = repository;
+            this.repository = repository;
+            this.userOptions = userOptions.Value;
         }
 
         public IEnumerable<ProductBL> Initialisation()
         {
-            var dao = _repository.GetProductFromConfig();
+            var userSearchList = userOptions.Gpus.Split(",");
             var products = new List<ProductBL>();
 
-            foreach (var d in dao)
+            foreach (var p in userSearchList)
             {
-                var product = new ProductBL(d.fe_sku, d.locale);
+                var product = new ProductBL(p, userOptions.Locale);
                 products.Add(product);
             }
+
             return products;
         }
 
         public async Task UpdateFromSourceAsync(ProductBL product)
         {
-            var dao = await _repository.GetProductFromSource(product.Reference);
+            var dao = await repository.GetProductFromSource(product.Reference, product.Localisation);
 
             product.BuyLink = dao.product_url;
             product.InStock = bool.Parse(dao.is_active);

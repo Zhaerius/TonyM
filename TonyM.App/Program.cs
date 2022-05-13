@@ -3,8 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TonyM.APP;
 using TonyM.BLL.Services;
 using TonyM.DAL.Repository;
-
-
+using TonyM.Models.Opts;
 
 var services = new ServiceCollection();
 ConfigureServices(services);
@@ -21,7 +20,10 @@ static void ConfigureServices(IServiceCollection services)
         .AddJsonFile("UserSettings.json")
         .Build();
 
-    services.AddSingleton<IConfiguration>(configuration);
+    services.AddOptions();
+    services.Configure<UserOptions>(configuration.GetSection("UserResearch"));
+    services.Configure<DiscordOptions>(configuration.GetSection("Discord"));
+
     services.AddSingleton<App>();
     services.AddTransient<IRepository, Repository>();
     services.AddTransient<IBusiness, Business>();

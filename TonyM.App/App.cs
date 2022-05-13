@@ -62,7 +62,8 @@ namespace TonyM.APP
                 }
                 catch (Exception e)
                 {
-                    UiHelpers.ErrorTextColor("x");
+                    //UiHelpers.ErrorTextColor("x");
+                    Console.WriteLine(e.Message);
                 }
                 #endregion
 
