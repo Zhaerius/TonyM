@@ -4,6 +4,6 @@ namespace TonyM.DAL.Repository
 {
     public interface IRepository
     {
-        Task<ListMap> GetProductFromSource(string reference, string locale);
+        Task<ListMap> GetProductFromApi(string reference, string locale);
     }
 }

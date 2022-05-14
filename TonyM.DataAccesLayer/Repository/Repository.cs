@@ -14,7 +14,7 @@ namespace TonyM.DAL.Repository
             this._httpClientFactory = httpClientFactory;
         }
 
-        public async Task<ListMap> GetProductFromSource(string reference, string locale)
+        public async Task<ListMap> GetProductFromApi(string reference, string locale)
         {
             double timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
 

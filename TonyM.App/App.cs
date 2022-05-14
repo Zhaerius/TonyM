@@ -1,20 +1,24 @@
-﻿using TonyM.APP.Helpers;
+﻿using Microsoft.Extensions.Options;
+using TonyM.APP.Helpers;
 using TonyM.BLL.Services;
+using TonyM.Models.Opts;
 
 namespace TonyM.APP
 {
     public class App
     {
         private readonly IBusiness _business;
+        private readonly UserOptions _userOptions;
 
-        public App(IBusiness business)
+        public App(IBusiness business, IOptions<UserOptions> userOptions)
         {
             _business = business;
+            _userOptions = userOptions.Value;
         }
 
         public async Task Run()
         {
-            var products = _business.Initialisation();
+            var products = _business.Initialisation(_userOptions.Gpus, _userOptions.Locale);
 
             foreach (var p in products)
                 p.OnAvailable += UiHelpers.Alert;
@@ -52,7 +56,7 @@ namespace TonyM.APP
                 var process = products.Select(async p =>
                 {
                     string? oldLink = p.BuyLink;
-                    await _business.UpdateFromSourceAsync(p);
+                    await _business.UpdateProductAsync(p);
                     p.VerificationStock(oldLink);
                 });
 
