@@ -1,13 +1,13 @@
 ﻿using TonyM.BLL.Models;
-using TonyM.DAL.Repository;
+using TonyM.DAL.Services;
 
 namespace TonyM.BLL.Services
 {
     public class Business : IBusiness
     {
-        private readonly IRepository repository;
+        private readonly INvidiaService repository;
 
-        public Business(IRepository repository)
+        public Business(INvidiaService repository)
         {
             this.repository = repository;
         }
@@ -27,7 +27,7 @@ namespace TonyM.BLL.Services
 
         public async Task UpdateProductAsync(ProductBL product)
         {
-            var dao = await repository.GetProductFromApi(product.Reference, product.Localisation);
+            var dao = await repository.GetProductFromApiAsync(product.Reference, product.Localisation);
 
             product.BuyLink = dao.product_url;
             product.InStock = bool.Parse(dao.is_active);

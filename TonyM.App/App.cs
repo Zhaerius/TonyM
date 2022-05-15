@@ -16,7 +16,7 @@ namespace TonyM.APP
             _userOptions = userOptions.Value;
         }
 
-        public async Task Run()
+        public async Task RunAsync()
         {
             var products = _business.Initialisation(_userOptions.Gpus, _userOptions.Locale);
 
@@ -47,17 +47,18 @@ namespace TonyM.APP
                 #endregion
 
                 #region Mise à jour des produit chez Nvidia et Detection
-                CancellationTokenSource tokenSource = new CancellationTokenSource();
-                CancellationToken token = tokenSource.Token;
+                //CancellationTokenSource tokenSource = new CancellationTokenSource();
+                //CancellationToken token = tokenSource.Token;
 
                 Console.Write("\nRecherche en cours");
 
-                var displayProgress = Task.Run(() => UiHelpers.DisplayProgress(token));
+                //var displayProgress = Task.Run(() => UiHelpers.DisplayProgress(token));
                 var process = products.Select(async p =>
                 {
                     string? oldLink = p.BuyLink;
                     await _business.UpdateProductAsync(p);
                     p.VerificationStock(oldLink);
+                    Console.Write(".");
                 });
 
                 try
@@ -72,7 +73,7 @@ namespace TonyM.APP
                 #endregion
 
                 #region Finalisation de l'affichage
-                tokenSource.Cancel();
+                //tokenSource.Cancel();
                 await Task.Delay(1000);
                 UiHelpers.ClearLastLine((nbProductsDetected == 0 ? 1 : 3) + nbProductsDetected);
                 #endregion
