@@ -46,19 +46,19 @@ namespace TonyM.APP
                 }
                 #endregion
 
-                #region Mise à jour des produit chez Nvidia et Detection
-                //CancellationTokenSource tokenSource = new CancellationTokenSource();
-                //CancellationToken token = tokenSource.Token;
-
+                #region UI Recherche
+                CancellationTokenSource tokenSource = new CancellationTokenSource();
+                CancellationToken token = tokenSource.Token;
                 Console.Write("\nRecherche en cours");
+                #endregion
 
-                //var displayProgress = Task.Run(() => UiHelpers.DisplayProgress(token));
+                #region TonyM Core
+                var displayProgress = Task.Run(() => UiHelpers.DisplayProgress(token));
                 var process = products.Select(async p =>
                 {
                     string? oldLink = p.BuyLink;
                     await _business.UpdateProductAsync(p);
                     p.VerificationStock(oldLink);
-                    Console.Write(".");
                 });
 
                 try
@@ -67,19 +67,16 @@ namespace TonyM.APP
                 }
                 catch (Exception e)
                 {
-                    //UiHelpers.ErrorTextColor("x");
-                    Console.WriteLine(e.Message);
+                    UiHelpers.TextColor(e.Message, ConsoleColor.Red);
                 }
-                #endregion
+                #endregion                
 
                 #region Finalisation de l'affichage
-                //tokenSource.Cancel();
+                tokenSource.Cancel();
                 await Task.Delay(1000);
                 UiHelpers.ClearLastLine((nbProductsDetected == 0 ? 1 : 3) + nbProductsDetected);
                 #endregion
             }
-
-            Console.WriteLine("Merci d'avoir utiliser TonyM");
         }
     }
 }

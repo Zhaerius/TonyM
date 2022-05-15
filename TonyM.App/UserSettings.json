@@ -2,13 +2,13 @@
   "UserResearch": {
     "Locale": "fr-fr",
     "Gpus": [
-      "NVGFT060Tsss",
-      //"NVGFT070",
-      //"NVGFT070T",
-      //"NVGFT080",
-      //"NVGFT080T",
-      //"NVGFT090",
-      //"NVGFT090T"
+      "NVGFT060T",
+      "NVGFT070",
+      "NVGFT070T",
+      "NVGFT080",
+      "NVGFT080T",
+      "NVGFT090",
+      "NVGFT090T"
     ]
   },
   "Discord": {

@@ -6,7 +6,7 @@
         {
         }
 
-        public HttpResponseException(string reference) : base($"La Requête HTTP sur le produit {reference} a échoué, maj impossible")
+        public HttpResponseException(string statutCode, string reference) : base($"{reference} : Statut code {statutCode}")
         {
         }
     }

@@ -17,30 +17,22 @@ namespace TonyM.DAL.Services
 
         public async Task<ListMap> GetProductFromApiAsync(string reference, string locale)
         {
-            try
-            {
-                var httpClient = _httpClientFactory.CreateClient("NvidiaClient");
-                var httpResponseMessage = await httpClient.GetAsync($"feinventory?skus={reference}&locale={locale}&timestamp={timestamp}");
+            var httpClient = _httpClientFactory.CreateClient("NvidiaClient");
+            var httpResponseMessage = await httpClient.GetAsync($"feinventory?skus={reference}&locale={locale}&timestamp={timestamp}");
 
-                if (httpResponseMessage.IsSuccessStatusCode)
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                using (var content = await httpResponseMessage.Content.ReadAsStreamAsync())
                 {
-                    using (var content = await httpResponseMessage.Content.ReadAsStreamAsync())
-                    {
-                        var root = JsonSerializer.Deserialize<Root>(content);
-                        return root.listMap.First();
-                    }
-                }
-                else
-                {
-                    throw new HttpRequestException();
+                    var root = JsonSerializer.Deserialize<Root>(content);
+
+                    if (root.listMap.Count() == 0)
+                        throw new DeserializeException(reference);
+
+                    return root.listMap.First();                             
                 }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            
+            throw new HttpResponseException(httpResponseMessage.StatusCode.ToString(), reference);         
         }
 
     }

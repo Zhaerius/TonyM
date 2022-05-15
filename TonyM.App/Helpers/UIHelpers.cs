@@ -39,9 +39,9 @@ namespace TonyM.APP.Helpers
             Console.SetCursorPosition(0, currentLineCursor);
         }
 
-        public static void ErrorTextColor(string text)
+        public static void TextColor(string text, ConsoleColor consoleColor)
         {
-            Console.BackgroundColor = ConsoleColor.Red;
+            Console.BackgroundColor = consoleColor;
             Console.Write(text);
             Console.ResetColor();
         }
