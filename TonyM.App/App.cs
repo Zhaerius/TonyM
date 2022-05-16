@@ -23,7 +23,7 @@ namespace TonyM.APP
             foreach (var p in products)
                 p.OnAvailable += UiHelpers.Alert;
 
-            #region Affichage lancement
+            #region UI Lancement
             Console.WriteLine(UiHelpers.Logo);
             Console.WriteLine("Appuyer sur une touche pour commencer la recherche");
             Console.ReadKey();
@@ -33,7 +33,7 @@ namespace TonyM.APP
 
             while (products.Count() > 0)
             {
-                #region Affichage des derniers drops
+                #region UI derniers drops
                 var productsDetected = products.Where(p => p.LastDetected != null).AsEnumerable();
                 int nbProductsDetected = productsDetected.Count();
 
@@ -71,7 +71,7 @@ namespace TonyM.APP
                 }
                 #endregion                
 
-                #region Finalisation de l'affichage
+                #region UI Fin
                 tokenSource.Cancel();
                 await Task.Delay(1000);
                 UiHelpers.ClearLastLine((nbProductsDetected == 0 ? 1 : 3) + nbProductsDetected);
