@@ -4,7 +4,7 @@ namespace TonyM.BLL.Services
 {
     public interface IBusiness
     {
-        public IEnumerable<ProductBL> Initialisation();
-        public Task UpdateFromSourceAsync(ProductBL product);
+        public IEnumerable<ProductBL> Initialisation(List<string> gpus, string locale);
+        public Task UpdateProductAsync(ProductBL product);
     }
 }

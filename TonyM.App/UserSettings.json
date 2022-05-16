@@ -1,9 +1,19 @@
 {
-  "Locale": "fr-fr",
-  "Gpu": "NVGFT060T,NVGFT070,NVGFT070T,NVGFT080,NVGFT080T,NVGFT090,NVGFT090T",
-  "Token": "xxx",
-  "DropChannel": "xxx",
-  "DropGroup": "xxx"
+  "UserResearch": {
+    "Locale": "fr-fr",
+    "Gpus": [
+      "NVGFT060T",
+      "NVGFT070",
+      "NVGFT070T",
+      "NVGFT080",
+      "NVGFT080T",
+      "NVGFT090",
+      "NVGFT090T"
+    ]
+  },
+  "Discord": {
+    "Token": "xxx",
+    "DropChannel": "xxx",
+    "DropGroup": "xxx"
+  }
 }
-
-// Vous pouvez réduire ou ajouter de nouvelle carte graphique, ainsi que changer la localisation

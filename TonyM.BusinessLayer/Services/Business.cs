@@ -1,33 +1,33 @@
 ﻿using TonyM.BLL.Models;
-using TonyM.DAL.Repository;
+using TonyM.DAL.Services;
 
 namespace TonyM.BLL.Services
 {
     public class Business : IBusiness
     {
-        private readonly IRepository _repository;
+        private readonly INvidiaService repository;
 
-        public Business(IRepository repository)
+        public Business(INvidiaService repository)
         {
-            this._repository = repository;
+            this.repository = repository;
         }
 
-        public IEnumerable<ProductBL> Initialisation()
+        public IEnumerable<ProductBL> Initialisation(List<string> gpus, string locale)
         {
-            var dao = _repository.GetProductFromConfig();
             var products = new List<ProductBL>();
 
-            foreach (var d in dao)
+            foreach (var gpu in gpus)
             {
-                var product = new ProductBL(d.fe_sku, d.locale);
+                var product = new ProductBL(gpu, locale);
                 products.Add(product);
             }
+
             return products;
         }
 
-        public async Task UpdateFromSourceAsync(ProductBL product)
+        public async Task UpdateProductAsync(ProductBL product)
         {
-            var dao = await _repository.GetProductFromSource(product.Reference);
+            var dao = await repository.GetProductFromApiAsync(product.Reference, product.Localisation);
 
             product.BuyLink = dao.product_url;
             product.InStock = bool.Parse(dao.is_active);

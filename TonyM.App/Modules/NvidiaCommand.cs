@@ -1,36 +1,39 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using TonyM.APP.Services;
 using TonyM.BLL.Events;
 using TonyM.BLL.Services;
+using TonyM.Models.Opts;
 
 namespace TonyM.APP.Modules
 {
     public class NvidiaCommand : ModuleBase
     {
         private readonly IBusiness _business;
-        private readonly IConfiguration _configuration;
+        private readonly UserOptions _userOptions;
+        private readonly DiscordOptions _discordOptions;
         private readonly DiscordSocketClient _client;
         private readonly NvidiaStatutService _nvidiaStatut;
 
-        public NvidiaCommand(DiscordSocketClient client, IServiceProvider service)
+        public NvidiaCommand(DiscordSocketClient client, IServiceProvider service, IOptions<UserOptions> userOptions, IOptions<DiscordOptions> discordOptions)
         {
             _client = client;
+            _discordOptions = discordOptions.Value;
+            _userOptions = userOptions.Value;
             _business = service.GetRequiredService<IBusiness>();
-            _configuration = service.GetRequiredService<IConfiguration>();
             _nvidiaStatut = service.GetRequiredService<NvidiaStatutService>();
         }
 
         [Command("startrtx", RunMode = RunMode.Async)]
-        public async Task StartSearch([Remainder] string args = null)
+        public async Task StartSearch()
         {
             if (!_nvidiaStatut.IsRunning)
             {
                 _nvidiaStatut.IsRunning = true;
-                var products = _business.Initialisation();
+                var products = _business.Initialisation(_userOptions.Gpus, _userOptions.Locale);
 
                 foreach (var p in products)
                     p.OnAvailable += SendMessage;
@@ -40,7 +43,7 @@ namespace TonyM.APP.Modules
                     var process = products.Select(async p =>
                     {
                         string? oldLink = p.BuyLink;
-                        await _business.UpdateFromSourceAsync(p);
+                        await _business.UpdateProductAsync(p);
                         p.VerificationStock(oldLink);
                     });
 
@@ -70,10 +73,8 @@ namespace TonyM.APP.Modules
 
         public async void SendMessage(object sender, ProductBLEventArgs e)
         {
-            ulong numberChannel = ulong.Parse(_configuration.GetSection("DropChannel").Value);
-            ulong numberRole = ulong.Parse(_configuration.GetSection("DropGroup").Value);
-            var channel = (IMessageChannel)_client.GetChannel(numberChannel);
-            var role = Context.Guild.Roles.Where(x => x.Id == numberRole).FirstOrDefault();
+            var channel = (IMessageChannel)_client.GetChannel(_discordOptions.DropChannel);
+            var role = Context.Guild.Roles.Where(x => x.Id == _discordOptions.DropGroup).FirstOrDefault();
 
             var message = new EmbedBuilder();
             message.Title = "Carte Graphique en stock !";
