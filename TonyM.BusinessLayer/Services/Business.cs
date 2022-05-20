@@ -5,9 +5,9 @@ namespace TonyM.BLL.Services
 {
     public class Business : IBusiness
     {
-        private readonly INvidiaService repository;
+        private readonly INvidiaExternalService repository;
 
-        public Business(INvidiaService repository)
+        public Business(INvidiaExternalService repository)
         {
             this.repository = repository;
         }

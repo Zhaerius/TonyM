@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using TonyM.BLL.Events;
+using TonyM.Core.Events;
 
 namespace TonyM.APP.Helpers
 {
@@ -16,7 +16,7 @@ namespace TonyM.APP.Helpers
 
 
 
-        public static void Alert(object sender, ProductBLEventArgs e)
+        public static void Alert(object sender, ProductEventArgs e)
         {
             OpenBuyPage(e.Link);
             SoundAlert(3);

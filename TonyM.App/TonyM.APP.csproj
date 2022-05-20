@@ -21,8 +21,10 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
   </ItemGroup>
 
+
   <ItemGroup>
-    <ProjectReference Include="..\TonyM.BusinessLayer\TonyM.BLL.csproj" />
+    <ProjectReference Include="..\TonyM.Core\TonyM.Core.csproj" />
+    <ProjectReference Include="..\TonyM.Infrastructure\TonyM.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

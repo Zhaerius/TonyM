@@ -4,12 +4,12 @@ using TonyM.DAL.Models;
 
 namespace TonyM.DAL.Services
 {
-    public class NvidiaService : INvidiaService
+    public class NvidiaExternalService : INvidiaExternalService
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly double timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
 
-        public NvidiaService(IHttpClientFactory httpClientFactory)
+        public NvidiaExternalService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }

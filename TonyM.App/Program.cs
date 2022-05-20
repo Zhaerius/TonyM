@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TonyM.APP;
-using TonyM.BLL.Services;
-using TonyM.DAL.Services;
-using TonyM.Models.Opts;
-using TonyM.Models.Policy;
+using TonyM.Core.Interfaces;
+using TonyM.Core.Models.Opts;
+using TonyM.Core.Services;
+using TonyM.Infrastructure;
 
 var services = new ServiceCollection();
 ConfigureServices(services);
@@ -26,8 +26,8 @@ static void ConfigureServices(IServiceCollection services)
     services.Configure<DiscordOptions>(configuration.GetSection("Discord"));
 
     services.AddSingleton<App>();
-    services.AddTransient<INvidiaService, NvidiaService>();
-    services.AddTransient<IBusiness, Business>();
+    services.AddTransient<INvidiaExternalService, NvidiaExternalService>();
+    services.AddTransient<IProductService, ProductService>();
 
     services.AddHttpClient("NvidiaClient", client =>
     {
@@ -37,6 +37,6 @@ static void ConfigureServices(IServiceCollection services)
         client.DefaultRequestHeaders.Add("Cache-Control", "no-cache, no-store, must-revalidate");
         client.DefaultRequestHeaders.Add("Accept-Language", "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7");
         client.DefaultRequestHeaders.Add("Pragma", "no-cache");
-    })
-        .AddPolicyHandler(PolicyRetry.GetRetryPolicy());
+    });
+        //.AddPolicyHandler(PolicyRetry.GetRetryPolicy());
 }

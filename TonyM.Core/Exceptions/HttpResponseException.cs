@@ -1,4 +1,4 @@
-﻿namespace TonyM.DAL.Exceptions
+﻿namespace TonyM.Core.Exceptions
 {
     public class HttpResponseException : Exception
     {
