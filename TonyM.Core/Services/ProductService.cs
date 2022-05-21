@@ -41,10 +41,9 @@ namespace TonyM.Core.Services
                 });
 
                 await Task.WhenAll(process);
+
+                await Task.Delay(1000);
             }
-
-
-
         }
     }
 }

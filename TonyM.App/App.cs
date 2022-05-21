@@ -25,11 +25,19 @@ namespace TonyM.APP
 
             #region UI Lancement
             Console.WriteLine(UiHelpers.Logo);
-            Console.WriteLine("Appuyer sur une touche pour commencer la recherche");
-            Console.ReadKey();
             Console.WriteLine("\n== VOTRE SELECTION ==");
             Console.WriteLine(string.Join(", ", products.Select(p => p.Name)));
+            Console.WriteLine("\nAppuyer sur une touche pour commencer la recherche");
+            Console.ReadKey();
             #endregion
+
+            #region UI Recherche
+            CancellationTokenSource tokenSource = new CancellationTokenSource();
+            CancellationToken token = tokenSource.Token;
+            Console.Write("\nRecherche en cours...");
+            #endregion
+
+
 
             try
             {
@@ -39,6 +47,7 @@ namespace TonyM.APP
             {
                 UiHelpers.TextColor(e.Message, ConsoleColor.Red);
             }
+
 
 
 
@@ -67,7 +76,6 @@ namespace TonyM.APP
             //await Task.Delay(1000);
             //UiHelpers.ClearLastLine((nbProductsDetected == 0 ? 1 : 3) + nbProductsDetected);
             //#endregion
-        }
         }
     }
 }

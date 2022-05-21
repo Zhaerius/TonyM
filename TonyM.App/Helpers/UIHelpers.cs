@@ -20,6 +20,8 @@ namespace TonyM.APP.Helpers
         {
             OpenBuyPage(e.Link);
             SoundAlert(3);
+
+            Console.WriteLine($"Drop de {e.Name} !");
         }
 
         public static void DisplayProgress(CancellationToken token)
