@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TonyM.Core.Interfaces;
 using TonyM.Core.Models.Opts;
 using TonyM.Core.Services;
+using TonyM.Infrastructure.Policies;
 using TonyM.Infrastructure.Services;
 
 namespace TonyM.Infrastructure
@@ -31,8 +32,8 @@ namespace TonyM.Infrastructure
                 client.DefaultRequestHeaders.Add("Cache-Control", "no-cache, no-store, must-revalidate");
                 client.DefaultRequestHeaders.Add("Accept-Language", "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7");
                 client.DefaultRequestHeaders.Add("Pragma", "no-cache");
-            });
-            //.AddPolicyHandler(PolicyRetry.GetRetryPolicy());
+            })
+            .AddPolicyHandler(PolicyRetry.GetRetryPolicy());
         }
     }
 }

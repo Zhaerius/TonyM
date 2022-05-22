@@ -34,7 +34,11 @@ namespace TonyM.APP
 
             try
             {
-                await productService.SearchStockAsync(products);
+                while (true)
+                {
+                    await productService.SearchStockAsync(products);
+                    await Task.Delay(1000);
+                }              
             }
             catch (Exception e)
             {

@@ -14,8 +14,6 @@ namespace TonyM.APP.Helpers
                   |___/                      
 ";
 
-
-
         public static void Alert(object sender, ProductEventArgs e)
         {
             OpenBuyPage(e.Link);

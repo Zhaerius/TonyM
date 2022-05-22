@@ -27,23 +27,19 @@ namespace TonyM.Core.Services
 
         public async Task SearchStockAsync(IEnumerable<Product> products)
         {
-            while (true)
+            var process = products.Select(async p =>
             {
-                var process = products.Select(async p =>
-                {
-                    string? oldLink = p.BuyLink;
+                string? oldLink = p.BuyLink;
 
-                    var dao = await nvidiaExternalService.GetProductFromApiAsync(p.Reference, p.Localisation);
-                    p.BuyLink = dao.product_url;
-                    p.InStock = bool.Parse(dao.is_active);
+                var dao = await nvidiaExternalService.GetProductFromApiAsync(p.Reference, p.Localisation);
+                p.BuyLink = dao.product_url;
+                p.InStock = bool.Parse(dao.is_active);
 
-                    p.VerificationStock(oldLink);
-                });
+                p.VerificationStock(oldLink);
 
-                await Task.WhenAll(process);
+            });
 
-                await Task.Delay(1000);
-            }
+            await Task.WhenAll(process);
         }
     }
 }

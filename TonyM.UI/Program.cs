@@ -2,7 +2,9 @@
 using TonyM.APP;
 
 var services = new ServiceCollection();
+ConfigureServices(services);
 TonyM.Infrastructure.Dependancies.ConfigureBasicServices(services);
+
 
 using var serviceProvider = services.BuildServiceProvider();
 
@@ -13,5 +15,3 @@ static void ConfigureServices(IServiceCollection services)
 {
     services.AddSingleton<App>();
 }
-
-    //.AddPolicyHandler(PolicyRetry.GetRetryPolicy());
