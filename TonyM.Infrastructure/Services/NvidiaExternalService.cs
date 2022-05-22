@@ -3,7 +3,7 @@ using TonyM.Core.Exceptions;
 using TonyM.Core.Interfaces;
 using TonyM.Core.Models;
 
-namespace TonyM.Infrastructure
+namespace TonyM.Infrastructure.Services
 {
     public class NvidiaExternalService : INvidiaExternalService
     {

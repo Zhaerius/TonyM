@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TonyM.APP", "TonyM.App\TonyM.APP.csproj", "{46FD4620-0BCC-47C0-84CD-36C1251B9282}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TonyM.UI", "TonyM.App\TonyM.UI.csproj", "{46FD4620-0BCC-47C0-84CD-36C1251B9282}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TonyM.Core", "TonyM.Core\TonyM.Core.csproj", "{C35597D1-E0F6-4C76-AD9A-42FBEBD99ED6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TonyM.Core", "TonyM.Core\TonyM.Core.csproj", "{C35597D1-E0F6-4C76-AD9A-42FBEBD99ED6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TonyM.Infrastructure", "TonyM.Infrastructure\TonyM.Infrastructure.csproj", "{F028200A-8564-4636-B7FA-A203B11ECE36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TonyM.Infrastructure", "TonyM.Infrastructure\TonyM.Infrastructure.csproj", "{F028200A-8564-4636-B7FA-A203B11ECE36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

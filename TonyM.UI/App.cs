@@ -29,15 +29,8 @@ namespace TonyM.APP
             Console.WriteLine(string.Join(", ", products.Select(p => p.Name)));
             Console.WriteLine("\nAppuyer sur une touche pour commencer la recherche");
             Console.ReadKey();
+            Console.WriteLine("\nRecherche en cours...");
             #endregion
-
-            #region UI Recherche
-            CancellationTokenSource tokenSource = new CancellationTokenSource();
-            CancellationToken token = tokenSource.Token;
-            Console.Write("\nRecherche en cours...");
-            #endregion
-
-
 
             try
             {
@@ -48,34 +41,6 @@ namespace TonyM.APP
                 UiHelpers.TextColor(e.Message, ConsoleColor.Red);
             }
 
-
-
-
-            //#region UI derniers drops
-            //var productsDetected = products.Where(p => p.LastDetected != null).AsEnumerable();
-            //int nbProductsDetected = productsDetected.Count();
-
-            //if (nbProductsDetected > 0)
-            //{
-            //    Console.WriteLine("\n== DERNIERS DROPS ==");
-
-            //    foreach (var product in productsDetected)
-            //        Console.WriteLine($"{product.Name} : {product.LastDetected}");
-            //}
-            //#endregion
-
-            //#region UI Recherche
-            //CancellationTokenSource tokenSource = new CancellationTokenSource();
-            //CancellationToken token = tokenSource.Token;
-            //Console.Write("\nRecherche en cours");
-            //#endregion
-
-
-            //#region UI Fin
-            //tokenSource.Cancel();
-            //await Task.Delay(1000);
-            //UiHelpers.ClearLastLine((nbProductsDetected == 0 ? 1 : 3) + nbProductsDetected);
-            //#endregion
         }
     }
 }

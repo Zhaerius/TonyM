@@ -20,31 +20,13 @@ namespace TonyM.APP.Helpers
         {
             OpenBuyPage(e.Link);
             SoundAlert(3);
-
-            Console.WriteLine($"Drop de {e.Name} !");
-        }
-
-        public static void DisplayProgress(CancellationToken token)
-        {
-            while (!token.IsCancellationRequested)
-            {
-                Console.Write(".");
-                Thread.Sleep(100);
-            }
-        }
-
-        public static void ClearLastLine(int number)
-        {
-            int currentLineCursor = Console.CursorTop - number;
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, currentLineCursor);
+            Console.WriteLine($"{e.Name} disponible ({DateTime.Now})");
         }
 
         public static void TextColor(string text, ConsoleColor consoleColor)
         {
             Console.BackgroundColor = consoleColor;
-            Console.Write(text);
+            Console.WriteLine(text);
             Console.ResetColor();
         }
 
