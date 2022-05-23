@@ -21,6 +21,7 @@ namespace TonyM.Infrastructure
             services.Configure<UserOptions>(configuration.GetSection("UserResearch"));
             services.Configure<DiscordOptions>(configuration.GetSection("Discord"));
 
+            services.AddSingleton<ISearchStatutService, SearchStatutService>();
             services.AddTransient<INvidiaExternalService, NvidiaExternalService>();
             services.AddTransient<IProductService, ProductService>();
 
