@@ -5,7 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	  <Version>5.1</Version>
+	  <Version>5.3</Version>
 	  <Authors>Gaetan Demazeux</Authors>
 	  <Company>Moi Même Société</Company>
 	  <Description>TonyM notifie la présence de cartes graphiques Nvidia FE chez les revendeurs</Description>
