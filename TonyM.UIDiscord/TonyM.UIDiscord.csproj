@@ -4,7 +4,13 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	  <Nullable>enable</Nullable>
+	  <Version>5.3</Version>
+	  <Authors>Gaetan Demazeux</Authors>
+	  <Company>Moi Même Société</Company>
+	  <Description>TonyM notifie la présence de cartes graphiques Nvidia FE chez les revendeurs</Description>
+	  <PackageProjectUrl>https://github.com/Zhaerius/TonyM</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/Zhaerius/TonyM</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
