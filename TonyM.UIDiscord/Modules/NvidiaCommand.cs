@@ -49,7 +49,6 @@ namespace TonyM.UIDiscord.Modules
                     {
                         Console.WriteLine("Erreur :" + e.Message);
                     }
-                    Console.WriteLine("bite");
                 }
             }
         }
