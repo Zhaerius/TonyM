@@ -1,24 +1,24 @@
 ﻿using Microsoft.Extensions.Options;
-using TonyM.APP.Helpers;
 using TonyM.Core.Interfaces;
 using TonyM.Core.Models.Opts;
+using TonyM.UIConsole.Helpers;
 
-namespace TonyM.APP
+namespace TonyM.UIConsole
 {
-    public class Main
+    public class App
     {
         private readonly IProductService productService;
         private readonly ISearchStatutService searchService;
         private readonly UserOptions userOptions;
 
-        public Main(IProductService productService, ISearchStatutService searchService, IOptions<UserOptions> userOptions)
+        public App(IProductService productService, ISearchStatutService searchService, IOptions<UserOptions> userOptions)
         {
             this.productService = productService;
             this.searchService = searchService;
             this.userOptions = userOptions.Value;
         }
 
-        public async Task MainAsync()
+        public async Task RunAsync()
         {
             this.searchService.IsSearching = true;
 

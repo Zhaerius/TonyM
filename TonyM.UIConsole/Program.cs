@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TonyM.APP;
+using TonyM.UIConsole;
 
 var services = new ServiceCollection();
 ConfigureServices(services);
@@ -7,10 +7,10 @@ TonyM.Infrastructure.Dependancies.ConfigureBasicServices(services);
 
 using var serviceProvider = services.BuildServiceProvider();
 
-await serviceProvider.GetService<Main>().MainAsync();
+await serviceProvider.GetService<App>().RunAsync();
 
 
 static void ConfigureServices(IServiceCollection services)
 {
-    services.AddSingleton<Main>();
+    services.AddSingleton<App>();
 }

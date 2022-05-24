@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using TonyM.Core.Events;
 
-namespace TonyM.APP.Helpers
+namespace TonyM.UIConsole.Helpers
 {
     public static class UiHelpers
     {

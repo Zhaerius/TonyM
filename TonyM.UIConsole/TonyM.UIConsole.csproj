@@ -27,10 +27,4 @@
     <ProjectReference Include="..\TonyM.Infrastructure\TonyM.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="UserSettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
