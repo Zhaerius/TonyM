@@ -15,6 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TonyM.UIDiscord", "TonyM.UI
 		{C35597D1-E0F6-4C76-AD9A-42FBEBD99ED6} = {C35597D1-E0F6-4C76-AD9A-42FBEBD99ED6}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TonyM.UI.WPF", "TonyM.UI.WPF\TonyM.UI.WPF.csproj", "{5B962E94-0149-4CB7-8932-2739E0C125E8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F028200A-8564-4636-B7FA-A203B11ECE36} = {F028200A-8564-4636-B7FA-A203B11ECE36}
+		{C35597D1-E0F6-4C76-AD9A-42FBEBD99ED6} = {C35597D1-E0F6-4C76-AD9A-42FBEBD99ED6}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +43,10 @@ Global
 		{635EC371-3689-43B5-B5C6-EBEFD94BADA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{635EC371-3689-43B5-B5C6-EBEFD94BADA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{635EC371-3689-43B5-B5C6-EBEFD94BADA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B962E94-0149-4CB7-8932-2739E0C125E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B962E94-0149-4CB7-8932-2739E0C125E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B962E94-0149-4CB7-8932-2739E0C125E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B962E94-0149-4CB7-8932-2739E0C125E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
